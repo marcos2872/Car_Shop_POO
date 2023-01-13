@@ -8,10 +8,12 @@ const carControler = new CarControler();
 const motoControler = new MotoController();
 
 route.get('/cars/:id', carControler.findCarsById);
-route.put('/cars/:id', carControler.updateCar);
 route.get('/cars', carControler.findCars);
+route.put('/cars/:id', carControler.updateCar);
 route.post('/cars', carControler.createCar);
 
+route.get('/motorcycles/:id', motoControler.findMotoById);
+route.get('/motorcycles', motoControler.findMoto);
 route.post('/motorcycles', motoControler.createCar);
 
 export default route;

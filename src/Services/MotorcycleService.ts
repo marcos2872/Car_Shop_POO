@@ -17,4 +17,38 @@ export default class MotoService {
     
     return this.createMotoDomain(newMoto);
   }
+
+  async findMoto() {
+    const motoModel = new MotoModel();
+
+    const allMoto = await motoModel.find();
+
+    return allMoto.map((curr) => ({
+      id: curr._id,
+      model: curr.model,
+      year: curr.year,
+      color: curr.color,
+      status: curr.status,
+      buyValue: curr.buyValue,
+      category: curr.category,
+      engineCapacity: curr.engineCapacity,
+    }));
+  }
+
+  async findMotoById(id: string) {
+    const motoModel = new MotoModel();
+
+    const moto = await motoModel.findById(id);
+
+    return moto ? {
+      id: moto._id,
+      model: moto.model,
+      year: moto.year,
+      color: moto.color,
+      status: moto.status,
+      buyValue: moto.buyValue,
+      category: moto.category,
+      engineCapacity: moto.engineCapacity,
+    } : null;
+  }
 }

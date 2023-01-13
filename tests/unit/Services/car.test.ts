@@ -72,7 +72,7 @@ describe('Teste para a rota cars', function () {
     sinon.stub(Model, 'findByIdAndUpdate').resolves(carOutputId);
 
     const service = new CarService();
-    const result = await service.updateCar('63776ded12654d2053a32382', carInput);
+    const result = await service.updateCarById('63776ded12654d2053a32382', carInput);
 
     expect(result).to.be.deep.equal(carOutputIdAjust);
   });
@@ -81,7 +81,7 @@ describe('Teste para a rota cars', function () {
     sinon.stub(Model, 'findByIdAndUpdate').resolves(null);
 
     const service = new CarService();
-    const result = await service.updateCar('63776ded12654d2053a32387', carInput);
+    const result = await service.updateCarById('63776ded12654d2053a32387', carInput);
 
     expect(result).to.be.deep.equal(undefined);
   });
@@ -89,7 +89,7 @@ describe('Teste para a rota cars', function () {
   it('Teste se é atualizado um carro por um ID em formato incorreto', async function () {
     try {
       const service = new CarService();
-      await service.updateCar('63776ded12654d2053a32382AA', carInput);
+      await service.updateCarById('63776ded12654d2053a32382AA', carInput);
     } catch (error) {
       expect((error as Error).message).to.be.deep.equal('Invalid Mongo id');
     }
