@@ -51,4 +51,21 @@ export default class CarService {
       seatsQty: carsById.seatsQty, 
     } : null;
   }
+
+  async updateCarById(id: string, obj: ICar) {
+    const carModel = new CarModel();
+
+    const update = await carModel.update(id, obj);
+
+    return update ? {
+      id: update._id,
+      model: update.model,
+      year: update.year,
+      color: update.color,
+      status: update.status,
+      buyValue: update.buyValue,
+      doorsQty: update.doorsQty,
+      seatsQty: update.seatsQty, 
+    } : null;
+  }
 }

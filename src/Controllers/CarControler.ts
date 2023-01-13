@@ -41,4 +41,18 @@ export default class CarController {
       return res.status(422).json({ message: INVALID_MONGOID_MESSAGE });
     }
   };
+
+  updateCar = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const car = req.body;
+
+    try {      
+      const updated = await this._CarService.updateCarById(id, car);
+      
+      return updated ? res.status(200).json(updated)
+        : res.status(404).json({ message: 'Car not found' });
+    } catch (error) {
+      return res.status(422).json({ message: INVALID_MONGOID_MESSAGE });
+    }
+  };
 }

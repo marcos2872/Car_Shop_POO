@@ -6,6 +6,7 @@ const route = Router();
 const carControler = new CarControler();
 
 route.get('/cars/:id', carControler.findCarsById);
+route.put('/cars/:id', carControler.updateCar);
 route.get('/cars', carControler.findCars);
 route.post('/cars', carControler.createCar);
 

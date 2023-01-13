@@ -33,10 +33,10 @@ export default abstract class AbstractModel<T> {
     return this.model.findById(id);
   }
 
-  async update(id: string, obj: Partial<T>): Promise<T | null> {
-    if (!isValidObjectId(id)) throw Error(INVALID_MONGOID_SENTENCE);
+  async update(_id: string, obj: Partial<T>): Promise<T | null> {
+    if (!isValidObjectId(_id)) throw Error(INVALID_MONGOID_SENTENCE);
     return this.model.findByIdAndUpdate(
-      { id },
+      { _id },
       { ...obj },
       { new: true },
     );
