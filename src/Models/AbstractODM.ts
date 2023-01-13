@@ -9,7 +9,7 @@ import {
 
 const INVALID_MONGOID_SENTENCE = 'Invalid Mongo id';
 
-export default abstract class AbstractModel<T> {
+export default abstract class AbstractODM<T> {
   protected model: Model<T>;
   protected schema: Schema;
   protected modelName: string;
