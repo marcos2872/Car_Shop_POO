@@ -17,4 +17,29 @@ export default class CarService {
     
     return this.createCarDomain(newCar);
   }
+
+  async findCars() {
+    const carModel = new CarModel();
+
+    const allCars = await carModel.find();
+
+    return allCars.map((curr) => ({
+      id: curr._id,
+      model: curr.model,
+      year: curr.year,
+      color: curr.color,
+      status: curr.status,
+      buyValue: curr.buyValue,
+      doorsQty: curr.doorsQty,
+      seatsQty: curr.seatsQty,
+    }));
+  }
+
+  async findCarsById(id: string) {
+    const carModel = new CarModel();
+
+    const carsById = await carModel.findById(id);
+
+    return carsById ? { ...carsById, id: carsById._id } : null;
+  }
 }
