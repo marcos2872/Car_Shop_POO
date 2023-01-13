@@ -40,6 +40,15 @@ export default class CarService {
 
     const carsById = await carModel.findById(id);
 
-    return carsById ? { ...carsById, id: carsById._id } : null;
+    return carsById ? {
+      id: carsById._id,
+      model: carsById.model,
+      year: carsById.year,
+      color: carsById.color,
+      status: carsById.status,
+      buyValue: carsById.buyValue,
+      doorsQty: carsById.doorsQty,
+      seatsQty: carsById.seatsQty, 
+    } : null;
   }
 }

@@ -1,16 +1,15 @@
 import { Request, Response } from 'express';
 import CarService from '../Services/CarService';
 
-// const INVALID_MONGOID_ERROR_MESSAGE = 'Invalid Mongo id';
 const INVALID_MONGOID_MESSAGE = 'Invalid mongo id';
 
 export default class CarController {
   private _CarService: CarService;
-  constructor(carService: CarService) {
-    this._CarService = carService;
+  constructor() {
+    this._CarService = new CarService();
   }
 
-  async createCar(req: Request, res: Response) {
+  createCar = async (req: Request, res: Response) => {
     const car = req.body;
     try {
       const newCar = await this._CarService.createCar(car);
@@ -18,9 +17,9 @@ export default class CarController {
     } catch (error) {
       return res.status(500).json((error as Error).message);
     }
-  }
+  };
 
-  async findCars(_req: Request, res: Response) {
+  findCars = async (_req: Request, res: Response) => {
     try {
       const allCars = await this._CarService.findCars();
       
@@ -28,9 +27,9 @@ export default class CarController {
     } catch (error) {
       return res.status(500).json((error as Error).message);
     }
-  }
+  };
 
-  async findCarsById(req: Request, res: Response) {
+  findCarsById = async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
       const carId = await this._CarService.findCarsById(id);
@@ -41,5 +40,5 @@ export default class CarController {
     } catch (error) {
       return res.status(422).json({ message: INVALID_MONGOID_MESSAGE });
     }
-  }
+  };
 }
