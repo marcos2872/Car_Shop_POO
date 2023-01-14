@@ -76,7 +76,7 @@ describe('Teste para a rota motorcycles', function () {
     const service = new MotorcycleService();
     const result = await service.updateMoto('63776ded12654d2053a32387', motorcycleInput);
 
-    expect(result).to.be.deep.equal(undefined);
+    expect(result).to.be.deep.equal(null);
   });
   it('Teste se é atualizado uma moto por um ID em formato incorreto', async function () {
     try {

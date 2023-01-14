@@ -83,7 +83,7 @@ describe('Teste para a rota cars', function () {
     const service = new CarService();
     const result = await service.updateCarById('63776ded12654d2053a32387', carInput);
 
-    expect(result).to.be.deep.equal(undefined);
+    expect(result).to.be.deep.equal(null);
   });
 
   it('Teste se é atualizado um carro por um ID em formato incorreto', async function () {
