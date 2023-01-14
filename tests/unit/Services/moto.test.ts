@@ -62,38 +62,38 @@ describe('Teste para a rota motorcycles', function () {
       expect((error as Error).message).to.be.deep.equal('Invalid Mongo id');
     }
   });
-  // it('Teste se é atualizado uma moto pelo ID', async function () {
-  //   sinon.stub(Model, 'findByIdAndUpdate').resolves(motorcycleOutput);
+  it('Teste se é atualizado uma moto pelo ID', async function () {
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(motorcycleOutput);
 
-  //   const service = new MotorcycleService();
-  //   const result = await service.updateMoto('63776ded12654d2053a32382', motorcycleInput);
+    const service = new MotorcycleService();
+    const result = await service.updateMoto('63776ded12654d2053a32382', motorcycleInput);
 
-  //   expect(result).to.be.deep.equal(motorcycleOutput);
-  // });
-  // it('Teste se atualiza uma moto por ID inexistente', async function () {
-  //   sinon.stub(Model, 'findByIdAndUpdate').resolves(null);
+    expect(result).to.be.deep.equal(motorcycleOutput);
+  });
+  it('Teste se atualiza uma moto por ID inexistente', async function () {
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(null);
 
-  //   const service = new MotorcycleService();
-  //   const result = await service.updateMoto('63776ded12654d2053a32387', motorcycleInput);
+    const service = new MotorcycleService();
+    const result = await service.updateMoto('63776ded12654d2053a32387', motorcycleInput);
 
-  //   expect(result).to.be.deep.equal(undefined);
-  // });
-  // it('Teste se é atualizado uma moto por um ID em formato incorreto', async function () {
-  //   try {
-  //     const service = new MotorcycleService();
-  //     await service.updateMoto('63776ded12654d2053a32382AA', motorcycleInput);
-  //   } catch (error) {
-  //     expect((error as Error).message).to.be.deep.equal('Invalid Mongo id');
-  //   }
-  // });
-  // it('Teste se o input vier inválido retorna NULL', async function () {
-  //   sinon.stub(Model, 'create').resolves(null);
+    expect(result).to.be.deep.equal(undefined);
+  });
+  it('Teste se é atualizado uma moto por um ID em formato incorreto', async function () {
+    try {
+      const service = new MotorcycleService();
+      await service.updateMoto('63776ded12654d2053a32382AA', motorcycleInput);
+    } catch (error) {
+      expect((error as Error).message).to.be.deep.equal('Invalid Mongo id');
+    }
+  });
+  it('Teste se o input vier inválido retorna NULL', async function () {
+    sinon.stub(Model, 'create').resolves(null);
 
-  //   const service = new MotorcycleService();
-  //   const result = await service.createMoto(motorcycleInput);
+    const service = new MotorcycleService();
+    const result = await service.createMoto(motorcycleInput);
 
-  //   expect(result).to.be.deep.equal(null);
-  // });
+    expect(result).to.be.deep.equal(null);
+  });
   
   afterEach(function () {
     sinon.restore();
