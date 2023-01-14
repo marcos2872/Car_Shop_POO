@@ -14,6 +14,7 @@ route.post('/cars', carControler.createCar);
 
 route.get('/motorcycles/:id', motoControler.findMotoById);
 route.get('/motorcycles', motoControler.findMoto);
+route.put('/motorcycles/:id', motoControler.updateMoto);
 route.post('/motorcycles', motoControler.createCar);
 
 export default route;

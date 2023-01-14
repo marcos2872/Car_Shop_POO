@@ -51,4 +51,21 @@ export default class MotoService {
       engineCapacity: moto.engineCapacity,
     } : null;
   }
+
+  async updateMoto(id: string, obj:IMotorcycle) {
+    const motoModel = new MotoModel();
+
+    const moto = await motoModel.update(id, obj);
+
+    return moto ? {
+      id: moto._id,
+      model: moto.model,
+      year: moto.year,
+      color: moto.color,
+      status: moto.status,
+      buyValue: moto.buyValue,
+      category: moto.category,
+      engineCapacity: moto.engineCapacity,
+    } : null;
+  }
 }

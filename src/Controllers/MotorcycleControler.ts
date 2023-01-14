@@ -40,4 +40,18 @@ export default class MotoController {
       return res.status(422).json({ message: INVALID_MONGOID_MESSAGE });
     }
   };
+
+  updateMoto = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const moto = req.body;
+    try {
+      const updated = await this._MotoService.updateMoto(id, moto);
+      if (!updated) {
+        return res.status(404).json({ message: 'Motorcycle not found' });
+      }
+      return res.status(200).json(updated);
+    } catch (error) {
+      return res.status(422).json({ message: INVALID_MONGOID_MESSAGE });
+    }
+  };
 }
