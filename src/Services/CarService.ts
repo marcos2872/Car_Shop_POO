@@ -68,4 +68,14 @@ export default class CarService {
       seatsQty: update.seatsQty, 
     } : null;
   }
+
+  async deleteCarById(id: string) {
+    const carModel = new CarModel();
+    const car = await this.findCarsById(id);
+    if (!car) {
+      return { message: 'Car not found' };
+    }
+    await carModel.delete(id);
+    return null;
+  }
 }

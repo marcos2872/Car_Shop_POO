@@ -54,4 +54,17 @@ export default class MotoController {
       return res.status(422).json({ message: INVALID_MONGOID_MESSAGE });
     }
   };
+
+  deleteMotorcycleById = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    try {
+      const result = await this._MotoService.deleteMotoById(id);
+      if (result) {
+        return res.status(404).json(result);
+      }
+      return res.sendStatus(204);
+    } catch (error) {
+      return res.status(422).json({ message: INVALID_MONGOID_MESSAGE });
+    }
+  };
 }

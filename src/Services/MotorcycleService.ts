@@ -68,4 +68,14 @@ export default class MotoService {
       engineCapacity: moto.engineCapacity,
     } : null;
   }
+
+  async deleteMotoById(id: string) {
+    const motoModel = new MotoModel();
+    const moto = await this.findMotoById(id);
+    if (!moto) {
+      return { message: 'Motorcycle not found' };
+    }
+    await motoModel.delete(id);
+    return null;
+  }
 }

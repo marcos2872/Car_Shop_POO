@@ -55,4 +55,17 @@ export default class CarController {
       return res.status(422).json({ message: INVALID_MONGOID_MESSAGE });
     }
   };
+
+  deleteCarById = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    try {
+      const result = await this._CarService.deleteCarById(id);
+      if (result) {
+        return res.status(404).json(result);
+      }
+      return res.sendStatus(204);
+    } catch (error) {
+      return res.status(422).json({ message: INVALID_MONGOID_MESSAGE });
+    }
+  };
 }
